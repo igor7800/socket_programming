@@ -92,7 +92,7 @@ void send_data(int newsockfd,char *buf)
  */
 void recive_data(int newsockfd, char *buffer,int size)
 {
-  bzero(buffer,sizeof(buffer));
+  bzero(buffer,strlen(buffer));
   int n = read(newsockfd,buffer,size);
   if (n < 0) error("ERROR reading from socket");
 }
