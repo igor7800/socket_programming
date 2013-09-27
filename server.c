@@ -1,4 +1,5 @@
 #include "tcp-ip.h"
+#include "file_operator.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,11 +16,12 @@ int main(int argc, char *argv[])
   bind_socket(sockfd,serv_addr);
   printf ("Server is open at port %d\n",portno);
   for (;;) {
-  listen_for_connection(sockfd,1);
-  newsockfd = accept_connection(sockfd,cli_addr,clilen);
-  recive_data(newsockfd,buffer,255);
-  printf("Here is the message: %s\n",buffer);
-  send_data(newsockfd,"I got your message");
+    listen_for_connection(sockfd,1);
+    newsockfd = accept_connection(sockfd,cli_addr,clilen);
+    recive_data(newsockfd,buffer,255);
+    printf("Here is the message: %s\n",buffer);
+    write_to_file("recived.txt",buffer);
+    send_data(newsockfd,buffer);
   }
   return 0;
 }
