@@ -5,6 +5,10 @@
 #include <netdb.h>
 #include <string.h>
 #include <stdlib.h> 
+/**
+ * Writes the error on the screen,then exits
+ * @param *msg pointer to message is to be sent with error
+ */
 
 void error(char *msg)
 {
@@ -15,11 +19,11 @@ void error(char *msg)
 /**
  * Creates a socket with communication style, namespace and 
  * protocol, prints error if socket not created
- * @param namespace 
- * @param style
- * @param protocol
- * @param portno 
- * @return sockfd 
+ * @param namespace Local/internet namespace 
+ * @param style communication style
+ * @param protocol protocol
+ * @param portno portnumber
+ * @return sockfd socket
  */
 int create_socket(int namespace, int style, int protocol,struct sockaddr_in serv_addr)
 {
@@ -30,9 +34,9 @@ int create_socket(int namespace, int style, int protocol,struct sockaddr_in serv
 }
 
 /**
- * bind a socket to server address and port
+ * Bind a socket to server address and port
  * @param sockfd socket
- * @param serv_addr 
+ * @param serv_addr struct of server address 
  */
 void bind_socket(int sockfd, struct sockaddr_in serv_addr)
 {
@@ -41,7 +45,7 @@ void bind_socket(int sockfd, struct sockaddr_in serv_addr)
 }
 
 /**
- *
+ * Listens to the connection
  * @param sockfd socket
  * @param number number of clients
  */
@@ -54,7 +58,8 @@ void listen_for_connection(int sockfd,int number)
 
 /**
  * Connecting to server
- * 
+ * @param sockfd socket
+ * @param serv_addr server address struct
  */
 void connect_to_server(int sockfd, struct sockaddr_in serv_addr)
 {
@@ -65,8 +70,10 @@ void connect_to_server(int sockfd, struct sockaddr_in serv_addr)
 
 
 /**
- * Accepting the connection 
- *
+ * Accepting the connection
+ * @param sockfd socket
+ * @param cli_addr server address struct 
+ * @param clilen length of the client address
  */
 int accept_connection(int sockfd, struct sockaddr_in cli_addr, int clilen )
 {
@@ -77,8 +84,9 @@ int accept_connection(int sockfd, struct sockaddr_in cli_addr, int clilen )
 }
 
 /**
- * sending data to the client socket
- *
+ * Sending data to the client socket
+ * @param newsockfd socket
+ * @param *buf pointer to the buffer which is to be sended
  */
 void send_data(int newsockfd,char *buf)
 {
@@ -87,8 +95,10 @@ void send_data(int newsockfd,char *buf)
 }
 
 /**
- *
- *@param size size of data to be recived
+ * Recives data
+ * @param newsockfd socket
+ * @param *buffer pointer to buffer which is to writed recived data to
+ * @param size size of data to be recived
  */
 void recive_data(int newsockfd, char *buffer,int size)
 {
