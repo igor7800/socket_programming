@@ -5,11 +5,11 @@
 #include <netdb.h>
 #include <string.h>
 #include <stdlib.h> 
+
 /**
  * Writes the error on the screen,then exits
  * @param *msg pointer to message is to be sent with error
  */
-
 void error(char *msg)
 {
   perror(msg);
